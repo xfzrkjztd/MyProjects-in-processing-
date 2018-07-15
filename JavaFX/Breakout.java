@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -47,13 +48,13 @@ public class Breakout extends Application {
     Line line;
     AnimationTimer timer;
     Label score;
-    Node car;
     private List lol = new ArrayList<>();
     ArrayList<Double> xkor = new ArrayList<Double>(50); 
     ArrayList<Double> ykor = new ArrayList<Double>(50);
     private final int WIDTH = 350, HEIGHT = 600;
     private int a = 100;
     private boolean status = true;
+    Scanner in;
 
     private Parent createContent() {
         root = new Pane();
@@ -61,13 +62,12 @@ public class Breakout extends Application {
         screen = new Rectangle(WIDTH, HEIGHT);
         
         ball = new Circle(6);
-        ball.relocate(5, 5);
+        ball.relocate(125, 125);
       
         randob = new Rectangle(10,10);
         randob.setFill(Color.RED);
         randob.setLayoutY(HEIGHT-10);
         randob.setLayoutX(-10);
-        
        
 
         player = new Rectangle(a, 10);
@@ -81,16 +81,17 @@ public class Breakout extends Application {
 
         return root;
     }
+            
  
 
     int pts = 0;
 
     public void createNewBall() {
         Circle ball2 = new Circle(6,Color.TRANSPARENT);
-        ball.relocate(5, 5);
+        ball.relocate(125, 125);
         root.getChildren().add(ball2);
     }
-   
+
   
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -125,12 +126,12 @@ public class Breakout extends Application {
         screen.setFill(linearGrad);
     
               
-   
+    
  
-          for(int i = 0; i<10; i++){
-            for (int j = 3 ; j<8; j++){
+      for(int i = 0; i<10; i++){
+      for (int j = 3 ; j<8; j++){
                 
-            brick = new Rectangle(34,15,Color.BLACK);
+      brick  = new Rectangle(34,15,Color.BLACK);
 
       brick.setLayoutX(i*35);
       brick.setLayoutY(j*16);   
@@ -139,33 +140,25 @@ public class Breakout extends Application {
       xkor.add(brick.getLayoutX());
       ykor.add(brick.getLayoutY()); 
       
-       FileInputStream input4 = new FileInputStream("src/ownpro/brick.png");
+      //*Bild
+       /*FileInputStream input4 = new FileInputStream("src/ownpro/brick.png");
         Image image4 = new Image(input4);
         ImageView imageView4 = new ImageView(image4);
-        brick.setFill(new ImagePattern(image4));
+        brick.setFill(new ImagePattern(image4));*/
              }
                       
         }
-            
-          
-          /* for (int f = 0; f < xkor.size(); f++) {
-			System.out.println(xkor.get(f));
-		} 
-           */
-          
-          if(ball.getLayoutX() == (brick.getLayoutX() - 34) && ball.getLayoutY() == (brick.getLayoutY()- 15)){
-                        System.out.println("lolololololol");
-                        
-                    }
-              
-       //EINmal komplett durch xkkor und ykor gehen und inhalte speichern
-       //Dann inhalte vergleichen und bei treffer mit ball kor löschen.
-              
-          
+        
+  
+          // x [0.0, 0.0, 0.0, 0.0, 0.0, 35.0, 35.0, 35.0, 35.0, 35.0, 70.0, 70.0, 70.0, 70.0, 70.0, 105.0, 105.0, 105.0, 105.0, 105.0, 140.0, 140.0, 140.0, 140.0, 140.0, 175.0, 175.0, 175.0, 175.0, 175.0, 210.0, 210.0, 210.0, 210.0, 210.0, 245.0, 245.0, 245.0, 245.0, 245.0, 280.0, 280.0, 280.0, 280.0, 280.0, 315.0, 315.0, 315.0, 315.0, 315.0]
+          // y [48.0, 64.0, 80.0, 96.0, 112.0, 48.0, 64.0, 80.0, 96.0, 112.0, 48.0, 64.0, 80.0, 96.0, 112.0, 48.0, 64.0, 80.0, 96.0, 112.0, 48.0, 64.0, 80.0, 96.0, 112.0, 48.0, 64.0, 80.0, 96.0, 112.0, 48.0, 64.0, 80.0, 96.0, 112.0, 48.0, 64.0, 80.0, 96.0, 112.0, 48.0, 64.0, 80.0, 96.0, 112.0, 48.0, 64.0, 80.0, 96.0, 112.0]
+       
+        
+          System.out.println(   root.getChildren());
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(15),
                 new EventHandler<ActionEvent>() {
             
-                
+              
  
             double dx = 5;
             double dy = 3;
@@ -177,22 +170,29 @@ public class Breakout extends Application {
                 ball.setLayoutX(ball.getLayoutX() + dx);
                 ball.setLayoutY(ball.getLayoutY() + dy);
                      root.getChildren();  
-             //   System.out.println(ykor.get(3));
+          
       
-       /*       
+             /* 
         if((ball.getLayoutX()>=brick.getLayoutX() && ball.getLayoutX()<=brick.getLayoutX()+35) && (ball.getLayoutY()>=brick.getLayoutY() && ball.getLayoutY()<=brick.getLayoutY()+16)){
             System.out.println("ll");
         }
         
-        */
-       
-      
-          for(int i = 0; i<10; i++){
-            for (int j = 3 ; j<8; j++){
-
-            //    System.out.println(brick.getLayoutX() + " " +  brick.getLayoutY());
-            }
-        }
+       */
+             int arrlength = 50;
+          /* while schleife probieren*/   for(int i = 0; i < arrlength; i++){
+                      if(ball.getLayoutX() >= xkor.get(i) && ball.getLayoutX() <= xkor.get(i) + 34 && ball.getLayoutY()>= ykor.get(i) && ball.getLayoutY() <= ykor.get(i) + 15){
+                            /**/
+                            //System.out.println(ykor.get(0));
+                        // x == 0 , y == 48
+                      //  System.out.println("X: " + ball.getLayoutX());
+                       // System.out.println("Y: " + ball.getLayoutY());
+                      System.out.println("good"); 
+                    
+                      dx = -dx;
+                      dy = -dy;
+                     
+                    }
+             }
              
 
                   
@@ -202,7 +202,7 @@ public class Breakout extends Application {
                 player.setWidth(a);
               }
 
-           //   ))(())   System.out.println("X: " + ball.getLayoutX() + "Y: " + ball.getLayoutY());
+         
                 k -= 0.015;
              
              if (k < 0.03) {
